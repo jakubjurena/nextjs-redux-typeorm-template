@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction, Selector } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
+import { Post } from '../../contrats/post';
 import { AsyncThunkOptions, RootState } from '../../redux';
 import { FetchingState } from '../../types';
-import { Post, PostsState } from './types';
+import { PostsState } from './types';
 
 export const initialPostsState: PostsState = {
   fetchingState: FetchingState.initial,

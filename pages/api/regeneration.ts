@@ -2,7 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Time } from '../../types';
-import { sleep } from '../../utils';
+import { sleep } from '../../utils/shared';
 
 let apiCalls = 0;
 
@@ -28,7 +28,7 @@ export const getRegeneration = async (): Promise<GenerationReturnType> => {
   return result;
 };
 
-export default async (_: NextApiRequest, res: NextApiResponse) => {
+export default async (_: NextApiRequest, res: NextApiResponse<GenerationReturnType>) => {
   res.statusCode = 200;
   const response = await getRegeneration();
 

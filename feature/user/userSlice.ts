@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, Selector } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
+import { User } from '../../contrats/user';
 import { RootState } from '../../redux';
 import { FetchingState } from '../../types';
-import { User, UserState } from './types';
+import { UserState } from './types';
 
 export const initialUserState: UserState = {
   fetchingState: FetchingState.initial,

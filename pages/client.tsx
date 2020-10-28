@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Link from 'next/link';
 
 import { loadPosts } from '../feature/posts/postsSlice';
 import { setClient } from '../feature/render/renderSlice';
+import { Navigation } from '../src/components/Navigation';
 
 export type ClientProps = {};
 
@@ -17,9 +17,7 @@ const Client: NextPage<ClientProps> = () => {
 
   return (
     <div>
-      <Link href="/">
-        <a>home</a>
-      </Link>
+      <Navigation />
       <div>Client</div>
       <div>
         <h3>Posts</h3>

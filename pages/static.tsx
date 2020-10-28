@@ -1,17 +1,15 @@
 import { NextPage } from 'next';
-import Link from 'next/link';
 
 import { setStaticGeneration } from '../feature/render/renderSlice';
 import { wrapper } from '../redux';
+import { Navigation } from '../src/components/Navigation';
 import { sleep } from '../utils';
 
 export type StaticProps = {};
 
 const Static: NextPage<StaticProps> = () => (
   <div>
-    <Link href="/">
-      <a>Home</a>
-    </Link>
+    <Navigation />
     <div>Static generation</div>
   </div>
 );

@@ -1,17 +1,15 @@
 import { NextPage } from 'next';
-import Link from 'next/link';
 
 import { setServerSide } from '../feature/render/renderSlice';
 import { wrapper } from '../redux';
+import { Navigation } from '../src/components/Navigation';
 import { sleep } from '../utils';
 
 export type ServerSideProps = {};
 
 const ServerSide: NextPage<ServerSideProps> = () => (
   <div>
-    <Link href="/">
-      <a>Home</a>
-    </Link>
+    <Navigation />
     <div>Server-Side rendering</div>
   </div>
 );

@@ -1,11 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { NextApiRequest, NextApiResponse } from 'next';
+import { Time } from '../../types';
 import { sleep } from '../../utils';
 
 let apiCalls = 0;
 
-export const getRegeneration = async () => {
+type GenerationReturnType = {
+  apiCalls: number;
+  time: Time;
+};
+
+export const getRegeneration = async (): Promise<GenerationReturnType> => {
   apiCalls++;
   const now = new Date();
   await sleep(2000);

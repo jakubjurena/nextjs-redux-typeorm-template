@@ -2,10 +2,12 @@ import { GetStaticProps, NextPage } from 'next';
 
 import { wrapper } from '../redux';
 import { Navigation } from '../src/components/Navigation';
+import { Time } from '../types';
 import { getRegeneration } from './api/regeneration';
 
 export type StaticProps = {
   apiCalls: number;
+  time: Time;
 };
 
 const Regeneration: NextPage<StaticProps> = ({ apiCalls }) => (
@@ -28,10 +30,8 @@ export const getStaticProps: GetStaticProps = async (context) =>
   addRevalidate(
     context,
     wrapper.getStaticProps(async () => {
-      const json = await getRegeneration();
-      console.log(json);
-
-      return { props: json };
+      const props = await getRegeneration();
+      return { props };
     }),
     10,
   );

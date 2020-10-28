@@ -13,35 +13,46 @@ export const initialPostsState: PostsState = {
 
 export const name = 'posts';
 
-export const loadPosts = createAsyncThunk<Post[], void, AsyncThunkOptions>(`${name}/loadPosts`, async (_, thunkAPI) => {
-  try {
-    const rootState = thunkAPI.getState();
-    if (getPosts(rootState).length > 0) {
-      console.log('Posts already fetched.');
-      return getPosts(rootState);
-    }
-    const response = await fetch('/api/posts', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+export const loadPosts = createAsyncThunk<Post[], void, AsyncThunkOptions>(
+  `${name}/loadPosts`,
+  async (_, thunkAPI) => {
+    try {
+      const response = await fetch('/api/posts', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-    if (!response.ok) {
-      const error = await response.json();
+      if (!response.ok) {
+        const error = await response.json();
+        // TODO: Zjistit, kde je error message.
+        console.log('response error');
+        return thunkAPI.rejectWithValue({ error: error.errors });
+      }
+
+      console.log('New posts fetched');
+      return response.json();
+    } catch (error) {
       // TODO: Zjistit, kde je error message.
-      console.log('response error');
-      return thunkAPI.rejectWithValue({ error: error.errors });
+      console.log('other error');
+      thunkAPI.rejectWithValue({ error: error.message });
     }
-
-    console.log('New posts fetched');
-    return response.json();
-  } catch (error) {
-    // TODO: Zjistit, kde je error message.
-    console.log('other error');
-    thunkAPI.rejectWithValue({ error: error.message });
-  }
-});
+  },
+  {
+    condition: (_, { getState }) => {
+      const rootState = getState();
+      if (getPostsFetchingState(rootState) !== FetchingState.initial) {
+        if (getPostsFetchingState(rootState) === FetchingState.request) {
+          console.log('Posts already requested');
+        } else if (getPostsFetchingState(rootState) === FetchingState.success) {
+          console.log('Posts already fetched');
+        }
+        return false;
+      }
+    },
+  },
+);
 
 const postsSlice = createSlice({
   name,

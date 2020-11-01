@@ -1,5 +1,5 @@
-import { Post } from '../../contrats/post';
-import { FetchingState } from '../../types';
+import { Post } from '../../../contrats/post';
+import { FetchingState } from '../../../types';
 
 export type PostsState = {
   fetchingState: FetchingState;

@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Post } from '../../contrats/post';
+import { Post } from '../../../contrats/post';
 
 export default (_: NextApiRequest, res: NextApiResponse) => {
   res.statusCode = 200;

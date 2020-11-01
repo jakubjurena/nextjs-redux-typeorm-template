@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { loadPosts } from '../feature/posts/postsSlice';
 import { setClient } from '../feature/render/renderSlice';
-import { Navigation } from '../src/components/Navigation';
+import { Navigation } from '../components/Navigation';
 
 export type ClientProps = {};
 

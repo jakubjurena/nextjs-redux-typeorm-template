@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Time } from '../../types';
-import { sleep } from '../../utils/shared';
+import { Time } from '../../../types';
+import { sleep } from '../../../utils/shared';
 
 let apiCalls = 0;
 

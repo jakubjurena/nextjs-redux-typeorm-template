@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 
 import styles from '../styles/Home.module.css';
-import { Navigation } from '../src/components/Navigation';
+import { Navigation } from '../components/Navigation';
 
 const Home: NextPage = () => (
   <div className={styles.container}>

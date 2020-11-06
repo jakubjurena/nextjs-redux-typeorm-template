@@ -3,6 +3,7 @@ import 'reflect-metadata';
 
 import { Post } from './entities/Post';
 import { User } from './entities/User';
+import { initDb } from './devData/initDb';
 
 let globalConnection: Connection | undefined;
 
@@ -21,10 +22,16 @@ export const tryCreateConnection = async () => {
     database: process.env.DB_NAME,
     entities: [Post, User],
     synchronize: process.env.NODE_ENV === 'production' ? false : true,
-    logging: true,
+    logging: process.env.NODE_ENV === 'development',
   });
+
+  if (process.env.NODE_ENV === 'development') {
+    await initDb();
+  }
 
   console.info('created new connection');
 
   globalConnection = connection;
 };
+
+// process.cwd()

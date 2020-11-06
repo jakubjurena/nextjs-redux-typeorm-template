@@ -2,8 +2,8 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getRepository } from 'typeorm';
-import { tryCreateConnection } from '../../../../db';
-import { Post } from '../../../../db/entities/Post';
+import { tryCreateConnection } from '../../../db';
+import { Post } from '../../../db/entities/Post';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await tryCreateConnection();

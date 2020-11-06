@@ -2,7 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Time } from '../../types';
-import { sleep } from '../../../utils/shared';
+import { sleep } from '../../utils/shared';
 
 let apiCalls = 0;
 

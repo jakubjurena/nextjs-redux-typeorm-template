@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { setServerSide } from '../feature/render/renderSlice';
 import { wrapper } from '../redux';
 import { Navigation } from '../components/Navigation';
-import { sleep } from '../../utils/shared';
+import { sleep } from '../utils/shared';
 
 export type ServerSideProps = {};
 

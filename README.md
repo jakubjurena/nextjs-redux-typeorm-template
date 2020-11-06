@@ -27,6 +27,11 @@ For more info check `.env`.
 You should have unique user and database for each enviroment. For more info check `.env.development`, `.env.production` and `.env.test`.
 
 
+## Babel
+
+I had to edit babel config because of decorators used in typeORM. Form more info check [this solution](https://github.com/typeorm/typeorm/issues/2897#issuecomment-476284154).
+
+
 ## Created by
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

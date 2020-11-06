@@ -1,4 +1,4 @@
-import { User } from '../../../contrats/user';
+import { User } from '../../contrats/user';
 import { FetchingState } from '../../types';
 
 export type UserState = {

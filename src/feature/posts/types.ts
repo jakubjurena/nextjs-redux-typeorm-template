@@ -1,4 +1,4 @@
-import { Post } from '../../../contrats/post';
+import { Post } from '../../contrats/post';
 import { FetchingState } from '../../types';
 
 export type PostsState = {

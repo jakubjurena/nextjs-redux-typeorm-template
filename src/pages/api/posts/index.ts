@@ -4,26 +4,49 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getRepository } from 'typeorm';
 import { tryCreateConnection } from '../../../db';
 import { Post } from '../../../db/entities/Post';
+import { User } from '../../../db/entities/User';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await tryCreateConnection();
-  const postRepository = getRepository(Post);
 
-  console.log(req.method);
-  console.log('Post count:', await postRepository.count());
   switch (req.method) {
     case 'GET': {
-      res.status(200);
-      res.json({
-        message: 'Not implemented yet.',
-      });
+      try {
+        const postRepository = getRepository(Post);
+        const posts = await postRepository.find();
+        res.status(200);
+        res.json(posts);
+      } catch (error) {
+        res.status(500);
+        res.json({
+          message: 'something went wrong',
+        });
+      }
       return;
     }
     case 'POST': {
-      res.status(200);
-      res.json({
-        message: 'Not implemented yet.',
-      });
+      try {
+        const postRepository = getRepository(Post);
+        const userRepository = getRepository(User);
+
+        const author = await userRepository.findOne({ id: req.body.authorId });
+
+        const newPost = new Post();
+        newPost.title = req.body.title;
+        newPost.description = req.body.description;
+        newPost.content = req.body.content;
+        newPost.author = author;
+
+        const savedPost = await postRepository.save(newPost);
+
+        res.status(200);
+        res.json(savedPost);
+      } catch (error) {
+        res.status(500);
+        res.json({
+          message: 'something went wrong',
+        });
+      }
       return;
     }
     default: {

@@ -1,7 +1,8 @@
 import { Connection, createConnection } from 'typeorm';
-import 'reflect-metadata'; // I did not find better place to import.
+import 'reflect-metadata';
 
 import { Post } from './entities/Post';
+import { User } from './entities/User';
 
 let globalConnection: Connection | undefined;
 
@@ -18,7 +19,7 @@ export const tryCreateConnection = async () => {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    entities: [Post],
+    entities: [Post, User],
     synchronize: process.env.NODE_ENV === 'production' ? false : true,
     logging: true,
   });

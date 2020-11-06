@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage } from 'next';
 
 import { wrapper } from '../redux';
 import { Navigation } from '../components/Navigation';
-import { Time } from '../../types';
+import { Time } from '../types';
 import { getRegeneration } from './api/regeneration';
 
 export type StaticProps = {

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, Selector } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { User } from '../../contrats/user';
+import { User } from '../../../contrats/user';
 import { RootState } from '../../redux';
 import { FetchingState } from '../../types';
 import { UserState } from './types';

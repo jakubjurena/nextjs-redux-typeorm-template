@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from 'next';
 
+import { INCREMENTAL_STATIC_REGENERATION_SECONDS } from '../constants';
 import { wrapper } from '../redux';
-import { Navigation } from '../components/Navigation';
 import { Time } from '../types';
 import { getRegeneration } from './api/regeneration';
 
@@ -11,10 +11,14 @@ export type StaticProps = {
 };
 
 const Regeneration: NextPage<StaticProps> = ({ apiCalls }) => (
-  <div>
-    <Navigation />
-    <div>Static generation ({apiCalls})</div>
-  </div>
+  <>
+    <h1>Regeneration</h1>
+    <p>Sutomatically generated as static HTML + JSON (uses getStaticProps)</p>
+    <p>Incremental static regeneration (uses revalidate in getStaticProps)</p>
+
+    <h2>Server render count</h2>
+    <p>{apiCalls}</p>
+  </>
 );
 
 /**
@@ -33,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (context) =>
       const props = await getRegeneration();
       return { props };
     }),
-    10,
+    INCREMENTAL_STATIC_REGENERATION_SECONDS,
   );
 
 export default Regeneration;

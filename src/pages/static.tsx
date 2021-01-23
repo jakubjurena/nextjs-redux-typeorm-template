@@ -2,16 +2,15 @@ import { NextPage } from 'next';
 
 import { setStaticGeneration } from '../feature/render/renderSlice';
 import { wrapper } from '../redux';
-import { Navigation } from '../components/Navigation';
 import { sleep } from '../utils/shared';
 
 export type StaticProps = {};
 
 const Static: NextPage<StaticProps> = () => (
-  <div>
-    <Navigation />
-    <div>Static generation</div>
-  </div>
+  <>
+    <h1>Static</h1>
+    <p>Automatically generated as static HTML + JSON (uses getStaticProps)</p>
+  </>
 );
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {

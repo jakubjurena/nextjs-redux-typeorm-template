@@ -2,16 +2,15 @@ import { NextPage } from 'next';
 
 import { setServerSide } from '../feature/render/renderSlice';
 import { wrapper } from '../redux';
-import { Navigation } from '../components/Navigation';
 import { sleep } from '../utils/shared';
 
 export type ServerSideProps = {};
 
 const ServerSide: NextPage<ServerSideProps> = () => (
-  <div>
-    <Navigation />
-    <div>Server-Side rendering</div>
-  </div>
+  <>
+    <h1>Serverside</h1>
+    <p>Server-side renders at runtime (uses getInitialProps or getServerSideProps)</p>
+  </>
 );
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {

@@ -20,6 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(500);
         res.json({
           message: 'something went wrong',
+          error,
         });
       }
       return;

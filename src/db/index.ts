@@ -1,4 +1,4 @@
-import { Connection, createConnection } from 'typeorm';
+import { Connection, createConnection, getConnection } from 'typeorm';
 import 'reflect-metadata';
 
 import { Post } from './entities/Post';
@@ -8,12 +8,21 @@ import { initDb } from './devData/initDb';
 let globalConnection: Connection | undefined;
 
 export const tryCreateConnection = async () => {
+  let connection: Connection;
+
+  if (!globalConnection) {
+    try {
+      connection = await getConnection();
+      console.log('Closing connection from previous build (Next.js hotload fix)');
+      await connection.close();
+    } catch (e) {}
+  }
+
   if (globalConnection) {
     console.info('DB already connected');
     return;
   }
 
-  let connection;
   try {
     connection = await createConnection({
       type: 'postgres',
@@ -27,7 +36,7 @@ export const tryCreateConnection = async () => {
       logging: process.env.NODE_ENV === 'development',
     });
   } catch (error) {
-    console.error("DB can't be connected.");
+    console.error("DB can't be connected.", error);
     return;
   }
 
